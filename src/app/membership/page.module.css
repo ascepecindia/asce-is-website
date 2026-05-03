@@ -1,0 +1,10 @@
+.pageWrapper {
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+.heroSection {
+  padding: 40px 0 80px 0;
+  position: relative;
+  z-index: 10;
+}

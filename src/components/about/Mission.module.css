@@ -1,0 +1,84 @@
+.section {
+  padding: 80px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.card {
+  position: relative;
+  padding: 48px;
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(0, 100, 255, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cardMission {
+  border-left: 4px solid var(--asce-blue);
+}
+
+.cardVision {
+  border-left: 4px solid #22D3EE;
+}
+
+.bgHash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-bebas);
+  font-size: 200px;
+  color: var(--text-primary);
+  opacity: 0.05;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.title {
+  font-family: var(--font-bebas);
+  font-size: 48px;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.textBody {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(15, 23, 42, 0.8);
+  position: relative;
+  z-index: 2;
+}
+
+.word {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: inline-block; /* Required for transforms/opacity sometimes, though inline is fine for opacity */
+}
+
+.word.visible {
+  opacity: 1;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 32px 24px;
+  }
+  .bgHash {
+    font-size: 150px;
+  }
+}

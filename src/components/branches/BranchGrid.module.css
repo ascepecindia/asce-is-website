@@ -1,0 +1,73 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  padding-bottom: 120px;
+}
+
+.card {
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(0, 100, 255, 0.2);
+  padding: 40px;
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.icon {
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-family: var(--font-bebas);
+  font-size: 36px;
+  color: #fff;
+  margin-bottom: 32px;
+}
+
+.meta {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(160, 200, 255, 0.6);
+  margin-bottom: 4px;
+}
+
+.value {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: #fff;
+}
+
+.btn {
+  margin-top: 12px;
+  background-color: transparent;
+  border: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 12px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--accent-blue);
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+.card:hover .btn {
+  background-color: var(--accent-blue);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

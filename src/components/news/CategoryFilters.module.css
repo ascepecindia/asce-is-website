@@ -1,0 +1,30 @@
+.container {
+  margin-bottom: 48px;
+}
+
+.prompt {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.symbol {
+  color: var(--accent-blue);
+  margin-right: 12px;
+}
+
+.prompt span {
+  cursor: pointer;
+  padding: 0 8px;
+  transition: color 0.3s ease;
+}
+
+.prompt span:hover {
+  color: #fff;
+}
+
+.active {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

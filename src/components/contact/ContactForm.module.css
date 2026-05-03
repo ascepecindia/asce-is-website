@@ -1,0 +1,43 @@
+.container {
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(0, 100, 255, 0.2);
+  padding: 48px;
+  border-radius: 12px;
+}
+
+.field {
+  margin-bottom: 32px;
+}
+
+.field label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent-blue);
+  margin-bottom: 12px;
+}
+
+.input, .select, .textarea {
+  width: 100%;
+  background-color: var(--bg-base);
+  border: 1px solid rgba(0, 100, 255, 0.3);
+  padding: 16px;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus, .select:focus, .textarea:focus {
+  border-color: var(--accent-blue);
+}
+
+.textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.select {
+  cursor: pointer;
+}

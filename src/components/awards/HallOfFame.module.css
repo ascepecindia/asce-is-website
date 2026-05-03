@@ -1,0 +1,79 @@
+.section {
+  padding: 64px 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.scrollContainer {
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  padding: 20px 0 40px 0;
+  scrollbar-width: none;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.awardCard {
+  min-width: 300px;
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(0, 100, 255, 0.2);
+  padding: 32px;
+  border-radius: 8px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.year {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent-blue);
+}
+
+.profileBox {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 24px;
+  background-color: var(--asce-blue);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+}
+
+.name {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.citation {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(15, 23, 42, 0.5);
+  margin-bottom: 24px;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+}
+
+.region {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--accent-blue);
+}
+
+.awardCard:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}

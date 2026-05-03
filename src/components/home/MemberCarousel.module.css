@@ -1,0 +1,110 @@
+.section {
+  padding: 80px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.carouselContainer {
+  margin-top: 48px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.track {
+  width: 100%;
+}
+
+.scrollContent {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+  padding-left: 5%;
+}
+
+.track:hover .scrollContent {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 16px)); } /* 50% because we duplicated the array */
+}
+
+.card {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.hexBorder {
+  width: 140px;
+  height: 160px;
+  background-color: var(--asce-blue);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  padding: 2px; /* Border thickness */
+  margin-bottom: 24px;
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hexImage {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(0, 61, 165, 0.8));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background-color: var(--bg-surface);
+}
+
+.name {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.role {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent-blue);
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.quoteWrapper {
+  height: 80px; /* Fixed height to prevent layout shift */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.quote {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(15, 23, 42, 0.8);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  line-height: 1.5;
+}
+
+/* Hover Effects */
+.card:hover .hexBorder {
+  transform: scale(1.05);
+}
+
+.card:hover .quote {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .scrollContent {
+    animation-duration: 20s;
+  }
+}

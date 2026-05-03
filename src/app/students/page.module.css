@@ -1,0 +1,9 @@
+.pageWrapper {
+  padding-top: 100px;
+  min-height: 100vh;
+}
+
+.hero {
+  padding: 60px 0;
+  text-align: center;
+}

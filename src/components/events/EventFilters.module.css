@@ -1,0 +1,36 @@
+.bar {
+  background-color: var(--bg-surface);
+  border: 1px solid rgba(0, 100, 255, 0.2);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 48px;
+  border-radius: 8px;
+}
+
+.prompt {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: #fff;
+}
+
+.symbol {
+  color: var(--accent-blue);
+  margin-right: 12px;
+}
+
+.results {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(160, 200, 255, 0.6);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
