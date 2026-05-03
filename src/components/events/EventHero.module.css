@@ -39,7 +39,7 @@
 .title {
   font-family: var(--font-bebas);
   font-size: 56px;
-  color: #fff;
+  color: var(--text-primary);
   margin-bottom: 16px;
   line-height: 1;
 }
@@ -47,14 +47,14 @@
 .meta {
   font-family: var(--font-mono);
   font-size: 16px;
-  color: rgba(160, 200, 255, 0.8);
+  color: var(--asce-blue);
   margin-bottom: 32px;
 }
 
 .counter {
   font-family: var(--font-mono);
   font-size: 14px;
-  color: #fff;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -100,7 +100,7 @@
 .label {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: rgba(160, 200, 255, 0.6);
+  color: rgba(15, 23, 42, 0.6);
   margin-top: 8px;
 }
 

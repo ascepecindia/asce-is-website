@@ -28,10 +28,16 @@
   color: var(--text-primary);
 }
 
+.date {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: rgba(15, 23, 42, 0.8);
+}
+
 .table th {
   text-align: left;
   padding: 16px 24px;
-  color: rgba(15, 23, 42, 0.5);
+  color: rgba(15, 23, 42, 0.8);
   border-bottom: 1px solid rgba(0, 100, 255, 0.1);
 }
 

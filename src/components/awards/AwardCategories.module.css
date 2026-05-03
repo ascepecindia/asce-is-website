@@ -31,21 +31,21 @@
 }
 
 .code {
-  color: rgba(160, 200, 255, 0.4);
+  color: rgba(15, 23, 42, 0.6);
 }
 
 .title {
   font-family: var(--font-sans);
   font-size: 18px;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-primary);
   margin-bottom: 12px;
 }
 
 .desc {
   font-family: var(--font-sans);
   font-size: 14px;
-  color: rgba(232, 240, 255, 0.6);
+  color: rgba(15, 23, 42, 0.8);
   line-height: 1.5;
   margin-bottom: 32px;
   flex: 1;
@@ -53,8 +53,8 @@
 
 .btn {
   background-color: transparent;
-  border: 1px solid #fff;
-  color: #fff;
+  border: 1.5px solid var(--asce-blue);
+  color: var(--asce-blue);
   font-family: var(--font-mono);
   font-size: 12px;
   padding: 10px;
@@ -64,8 +64,8 @@
 }
 
 .btn:hover {
-  background-color: #fff;
-  color: var(--asce-blue);
+  background-color: var(--asce-blue);
+  color: #fff;
 }
 
 @media (max-width: 768px) {

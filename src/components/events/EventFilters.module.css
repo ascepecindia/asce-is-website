@@ -12,7 +12,7 @@
 .prompt {
   font-family: var(--font-mono);
   font-size: 14px;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .symbol {
@@ -23,7 +23,7 @@
 .results {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: rgba(160, 200, 255, 0.6);
+  color: rgba(15, 23, 42, 0.6);
   letter-spacing: 0.1em;
 }
 

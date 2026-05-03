@@ -22,7 +22,7 @@
 .title {
   font-family: var(--font-bebas);
   font-size: 36px;
-  color: #fff;
+  color: var(--text-primary);
   margin-bottom: 32px;
 }
 
@@ -33,14 +33,14 @@
 .label {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: rgba(160, 200, 255, 0.6);
+  color: rgba(15, 23, 42, 0.6);
   margin-bottom: 4px;
 }
 
 .value {
   font-family: var(--font-sans);
   font-size: 16px;
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .btn {
