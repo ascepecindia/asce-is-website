@@ -11,7 +11,7 @@ const LEADERS = [
     specialisation: "GIS, Remote Sensing & Drone Technology",
     bio: "Assistant Professor in Civil Engineering at PEC Chandigarh. Recipient of ASCE's Distinguished Service Medal (2025) and Outstanding Faculty Advisor Award. Pioneering the use of GIS, remote sensing, and drone technology in civil engineering education and practice across India.",
     image: "/sandhu_profile.png",
-    linkedin: "https://www.linkedin.com/in/dr-har-amrit-singh-sandhu-2905a235/"
+    linkedin: "https://www.linkedin.com/in/har-amrit-singh-sandhu/"
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ const LEADERS = [
     specialisation: "Geotechnical Earthquake Engineering",
     bio: "Assistant Professor in Civil Engineering at Harcourt Butler Technical University, Kanpur. Ph.D. from IIT Delhi, M.Tech in Earthquake Engineering from IIT Roorkee. Expert in soil dynamics, machine foundations, and seismic geotechnical analysis.",
     image: "/tandon.jpg",
-    linkedin: "https://www.linkedin.com/in/dr-kavita-tandon-65816a48/"
+    linkedin: "https://www.linkedin.com/in/dr-kavita-tandon-29843a23/"
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ const LEADERS = [
     specialisation: "Civil & Environmental Engineering",
     bio: "Experienced civil engineer and dedicated ASCE India Section leader. Active contributor to the Indian Society of Earthquake Technology (ISET) and instrumental in managing the financial operations of the ASCE India Section.",
     image: "/kundal.jpg",
-    linkedin: "https://www.linkedin.com/in/ashwani-kundal-2a4b8b1a/"
+    linkedin: "https://www.linkedin.com/in/ashwani-kundal-318705138/"
   }
 ];
 
