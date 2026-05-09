@@ -7,50 +7,47 @@ import styles from './Navigation.module.css';
 
 const NAV_LINKS = [
   { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Membership', path: '/membership' },
-  { name: 'Students', path: '/students' },
+  { name: 'Office Bearers', path: '/about' },
+  { name: 'Student Chapters', path: '/students' },
   { name: 'Events', path: '/events' },
-  { name: 'News', path: '/news' },
-  { name: 'Resources', path: '/resources' },
-  { name: 'Branches', path: '/branches' },
-  { name: 'Awards', path: '/awards' },
   { name: 'Contact', path: '/contact' }
 ];
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
 
-  // Close mobile menu when path changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
-  // Prevent scroll when mobile menu is open
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
   }, [isMobileMenuOpen]);
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={`${styles.navContainer} container`}>
-        <div className={styles.logoArea}>
-          <Link href="/" className={styles.logo}>
-            <Image
-              src="/logo.png"
-              alt="ASCE IS"
-              width={150}
-              height={150}
-              className={styles.logoImage}
-              priority
-            />
-          </Link>
-        </div>
+        <Link href="/" className={styles.logo}>
+          <Image
+            src="/logo.png"
+            alt="ASCE India Section"
+            width={60}
+            height={60}
+            className={styles.logoImage}
+            priority
+          />
+          <span className={styles.logoText}>ASCE India Section</span>
+        </Link>
 
         <nav className={styles.desktopNav}>
           {NAV_LINKS.map((link) => (
@@ -59,41 +56,43 @@ export default function Navigation() {
               href={link.path}
               className={`${styles.navLink} ${pathname === link.path ? styles.active : ''}`}
             >
-              {link.name.toUpperCase()}
+              {link.name}
             </Link>
           ))}
         </nav>
 
         <div className={styles.ctaArea}>
           <Link href="/membership" className="btn-primary">
-            JOIN SECTION
+            Join ASCE
           </Link>
           <button
-            className={styles.hamburger}
+            className={`${styles.hamburger} ${isMobileMenuOpen ? styles.hamburgerOpen : ''}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            <span className={`${styles.hamburgerLine} ${isMobileMenuOpen ? styles.hamburgerTop : ''}`}></span>
-            <span className={`${styles.hamburgerLine} ${isMobileMenuOpen ? styles.hamburgerMid : ''}`}></span>
-            <span className={`${styles.hamburgerLine} ${isMobileMenuOpen ? styles.hamburgerBot : ''}`}></span>
+            <span className={styles.hamburgerLine}></span>
+            <span className={styles.hamburgerLine}></span>
+            <span className={styles.hamburgerLine}></span>
           </button>
         </div>
       </div>
 
-      {/* Mobile Overlay */}
-      <div className={`${styles.mobileOverlay} ${isMobileMenuOpen ? styles.overlayOpen : ''} bg-grid`}>
-        <div className={styles.mobileNavContainer}>
-          {NAV_LINKS.map((link, index) => (
+      {/* Mobile Menu */}
+      <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+        <nav className={styles.mobileNav}>
+          {NAV_LINKS.map((link) => (
             <Link
               key={link.name}
               href={link.path}
               className={`${styles.mobileNavLink} ${pathname === link.path ? styles.mobileActive : ''}`}
-              style={{ transitionDelay: `${isMobileMenuOpen ? index * 0.05 : 0}s` }}
             >
               {link.name}
             </Link>
           ))}
-        </div>
+          <Link href="/membership" className="btn-primary" style={{ marginTop: '16px', width: '100%', justifyContent: 'center' }}>
+            Join ASCE
+          </Link>
+        </nav>
       </div>
     </header>
   );

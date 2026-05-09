@@ -4,7 +4,9 @@
 }
 
 .terminal {
-  background-color: var(--bg-surface);
+  background: var(--bg-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(0, 100, 255, 0.3);
   padding: 16px 24px;
   border-radius: 8px;

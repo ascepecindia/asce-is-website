@@ -1,7 +1,6 @@
 import EventHero from '@/components/events/EventHero';
-import BlueprintCalendar from '@/components/events/BlueprintCalendar';
+import EventsList from '@/components/events/EventsList';
 import EventFilters from '@/components/events/EventFilters';
-import styles from './page.module.css';
 
 export const metadata = {
   title: "Events | ASCE India Section",
@@ -10,12 +9,12 @@ export const metadata = {
 
 export default function Events() {
   return (
-    <div className={`bg-grid ${styles.pageWrapper}`}>
+    <>
       <EventHero />
       <div className="container">
         <EventFilters />
-        <BlueprintCalendar />
+        <EventsList />
       </div>
-    </div>
+    </>
   );
 }

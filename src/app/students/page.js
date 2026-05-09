@@ -1,26 +1,21 @@
 import IndiaMap from '@/components/students/IndiaMap';
-import Leaderboard from '@/components/students/Leaderboard';
-import Mentorship from '@/components/students/Mentorship';
-import styles from './page.module.css';
 
 export const metadata = {
-  title: "Students | ASCE India Section",
-  description: "Empowering the next generation of civil engineers in India.",
+  title: "Student Chapters | ASCE India Section",
+  description: "47 student chapters across the Indian subcontinent — empowering the next generation of civil engineers.",
 };
 
 export default function Students() {
   return (
-    <div className={`bg-grid ${styles.pageWrapper}`}>
-      <div className={styles.hero}>
+    <>
+      <div className="page-hero">
         <div className="container">
-          <h1 className="text-display">47 STUDENT CHAPTERS</h1>
-          <p className="text-hero-sub" style={{ color: 'var(--accent-blue)' }}>// ACROSS THE INDIAN SUBCONTINENT</p>
+          <h1>Student Chapters</h1>
+          <p>47 chapters across the Indian subcontinent</p>
         </div>
       </div>
       
       <IndiaMap />
-      <Leaderboard />
-      <Mentorship />
-    </div>
+    </>
   );
 }

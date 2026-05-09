@@ -1,14 +1,36 @@
 .section {
   padding: 80px 0;
+  background: linear-gradient(180deg, rgba(237, 242, 252, 0.75) 0%, rgba(245, 248, 255, 0.72) 50%, rgba(237, 242, 252, 0.75) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   overflow: hidden;
   position: relative;
-  z-index: 10;
+  transition: background 0.4s ease;
+}
+
+/* Blueprint line pattern */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 61, 165, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 61, 165, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.section h2 {
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
 }
 
 .carouselContainer {
-  margin-top: 48px;
   width: 100%;
   overflow-x: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .track {
@@ -17,10 +39,10 @@
 
 .scrollContent {
   display: flex;
-  gap: 32px;
+  gap: 24px;
   width: max-content;
-  animation: scroll 30s linear infinite;
-  padding-left: 5%;
+  animation: scroll 35s linear infinite;
+  padding-left: 24px;
 }
 
 .track:hover .scrollContent {
@@ -29,82 +51,76 @@
 
 @keyframes scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-50% - 16px)); } /* 50% because we duplicated the array */
+  100% { transform: translateX(calc(-50% - 12px)); }
 }
 
 .card {
-  width: 260px;
+  width: 300px;
+  background-color: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  background: linear-gradient(135deg, var(--bg-tint) 0%, #E2EBF6 100%);
+  display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
+  margin-bottom: 20px;
   flex-shrink: 0;
 }
 
-.hexBorder {
-  width: 140px;
-  height: 160px;
-  background-color: var(--asce-blue);
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  padding: 2px; /* Border thickness */
-  margin-bottom: 24px;
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.hexImage {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(0, 61, 165, 0.8));
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background-color: var(--bg-surface);
-}
-
-.name {
-  font-family: var(--font-sans);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 4px;
-}
-
-.role {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--accent-blue);
-  letter-spacing: 0.05em;
-  margin-bottom: 16px;
-}
-
-.quoteWrapper {
-  height: 80px; /* Fixed height to prevent layout shift */
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
+.avatar span {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
 }
 
 .quote {
-  font-family: var(--font-sans);
   font-size: 14px;
   font-style: italic;
-  color: rgba(15, 23, 42, 0.8);
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-  line-height: 1.5;
+  color: var(--text);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
 }
 
-/* Hover Effects */
-.card:hover .hexBorder {
-  transform: scale(1.05);
+.info {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
 }
 
-.card:hover .quote {
-  opacity: 1;
-  transform: translateY(0);
+.name {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.role {
+  font-size: 13px;
+  color: var(--text-muted);
 }
 
 @media (max-width: 768px) {
   .scrollContent {
-    animation-duration: 20s;
+    animation-duration: 22s;
   }
 }

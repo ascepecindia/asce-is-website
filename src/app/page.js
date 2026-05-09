@@ -7,13 +7,13 @@ import NewsStrip from '@/components/home/NewsStrip';
 
 export default function Home() {
   return (
-    <div className="bg-grid">
+    <>
       <Hero />
       <StatsBand />
       <EventsGrid />
       <SVGDraw />
       <MemberCarousel />
       <NewsStrip />
-    </div>
+    </>
   );
 }

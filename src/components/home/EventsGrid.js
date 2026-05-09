@@ -5,32 +5,29 @@ const EVENTS = [
   {
     id: 1,
     title: "Structural Engineering Summit 2024",
-    date: "2024.08.15",
+    date: "August 15, 2024",
     branch: "North",
     branchColor: "#3B82F6",
-    format: "HYBRID",
-    city: "NEW DELHI",
-    coords: "+28.6, +77.2"
+    format: "Hybrid",
+    city: "New Delhi"
   },
   {
     id: 2,
     title: "Sustainable Infrastructure Symposium",
-    date: "2024.09.02",
+    date: "September 2, 2024",
     branch: "South",
     branchColor: "#22D3EE",
-    format: "IN-PERSON",
-    city: "BENGALURU",
-    coords: "+12.9, +77.5"
+    format: "In-Person",
+    city: "Bengaluru"
   },
   {
     id: 3,
     title: "Bridge Design Masterclass",
-    date: "2024.09.18",
+    date: "September 18, 2024",
     branch: "East",
     branchColor: "#EF9F27",
-    format: "VIRTUAL",
-    city: "ONLINE",
-    coords: "+22.5, +88.3"
+    format: "Virtual",
+    city: "Online"
   }
 ];
 
@@ -39,19 +36,17 @@ export default function EventsGrid() {
     <section className={styles.section}>
       <div className="container">
         <div className={styles.header}>
-          <h2 className="text-section">UPCOMING EVENTS</h2>
-          <p className={styles.subtitle}>// NEXT_EVENTS LOADED &middot; BRANCH: ALL</p>
+          <h2>Upcoming Events</h2>
+          <p className={styles.subtitle}>Conferences, webinars, and workshops across all branches</p>
         </div>
         
         <div className={styles.grid}>
           {EVENTS.map((event) => (
             <div key={event.id} className={styles.card}>
               <div 
-                className={styles.topStrip} 
+                className={styles.leftBorder} 
                 style={{ backgroundColor: event.branchColor }}
               ></div>
-              
-              <div className={styles.coordLabel}>{event.coords}</div>
               
               <div className={styles.cardBody}>
                 <div className={styles.date}>{event.date}</div>
@@ -62,8 +57,8 @@ export default function EventsGrid() {
                   <span className={styles.badge}>{event.city}</span>
                 </div>
                 
-                <Link href={`/events/${event.id}`} className={styles.registerLink}>
-                  REGISTER &rarr;
+                <Link href={`/events`} className={styles.registerLink}>
+                  Register →
                 </Link>
               </div>
             </div>

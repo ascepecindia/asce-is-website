@@ -1,91 +1,92 @@
 .section {
   padding: 80px 0;
-  width: 100%;
-  background-color: var(--bg-base);
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   position: relative;
-  z-index: 10;
+  overflow: hidden;
+  transition: background 0.4s ease;
 }
 
-.svgContainer {
-  width: 100%;
-  height: 500px;
-  position: relative;
-  display: flex;
-  justify-content: center;
+/* Subtle diagonal line decoration */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 80px,
+    rgba(0, 61, 165, 0.02) 80px,
+    rgba(0, 61, 165, 0.02) 81px
+  );
+  pointer-events: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
   align-items: center;
-}
-
-.svg {
-  width: 100%;
-  height: 100%;
-}
-
-.drawPath {
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-}
-
-.animate .bridgeGroup .drawPath {
-  animation: drawLine 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-.animate .buildingGroup .drawPath {
-  animation: drawLine 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.5s;
-}
-
-.animate .roadGroup .drawPath {
-  animation: drawLine 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 1s;
-}
-
-@keyframes drawLine {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.callout {
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  position: relative;
+  z-index: 1;
 }
 
-.animate .bridgeGroup .callout {
+.visible {
   opacity: 1;
-  transition-delay: 2.5s;
+  transform: translateY(0);
 }
 
-.animate .buildingGroup .callout {
-  opacity: 1;
-  transition-delay: 3s;
+.imageArea {
+  width: 100%;
 }
 
-.animate .roadGroup .callout {
-  opacity: 1;
-  transition-delay: 3.5s;
+.sectionImage {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
 }
 
-.caption {
-  text-align: center;
-  margin-top: 24px;
+.textArea h2 {
+  margin-bottom: 16px;
 }
 
-.caption p {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: rgba(160, 200, 255, 0.8);
-  letter-spacing: 0.05em;
+.body {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 28px;
 }
 
-@media (max-width: 1024px) {
-  .svgContainer {
-    height: 400px;
-  }
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fact strong {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.fact p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
 
 @media (max-width: 768px) {
-  .svgContainer {
-    height: 250px;
-  }
-  .caption p {
-    font-size: 11px;
+  .grid {
+    grid-template-columns: 1fr;
   }
 }

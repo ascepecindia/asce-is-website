@@ -1,6 +1,5 @@
 import ContactForm from '@/components/contact/ContactForm';
 import BranchTerminals from '@/components/contact/BranchTerminals';
-import styles from './page.module.css';
 
 export const metadata = {
   title: "Contact | ASCE India Section",
@@ -9,18 +8,20 @@ export const metadata = {
 
 export default function Contact() {
   return (
-    <div className={`bg-grid ${styles.pageWrapper}`}>
-      <div className="container">
-        <div className={styles.hero}>
-          <h1 className="text-display">ESTABLISH_CONNECTION</h1>
-          <p className="text-hero-sub" style={{ color: 'var(--accent-blue)', marginTop: '16px' }}>// DIRECT CHANNELS TO THE SECTION LEADERSHIP</p>
-        </div>
-        
-        <div className={styles.grid}>
-          <ContactForm />
-          <BranchTerminals />
+    <>
+      <div className="page-hero">
+        <div className="container">
+          <h1>Get in Touch</h1>
+          <p>We'd love to hear from you — reach out to any of our regional branch offices</p>
         </div>
       </div>
-    </div>
+      
+      <section style={{ padding: '64px 0 100px' }}>
+        <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px' }}>
+          <BranchTerminals />
+          <ContactForm />
+        </div>
+      </section>
+    </>
   );
 }

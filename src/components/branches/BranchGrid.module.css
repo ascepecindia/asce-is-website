@@ -6,8 +6,8 @@
 }
 
 .card {
-  background-color: var(--bg-surface);
-  border: 1px solid rgba(0, 100, 255, 0.2);
+  background-color: var(--primary);
+  border: 2px solid transparent;
   padding: 40px;
   border-radius: 12px;
   position: relative;
@@ -22,7 +22,7 @@
 .title {
   font-family: var(--font-bebas);
   font-size: 36px;
-  color: var(--text-primary);
+  color: #fff;
   margin-bottom: 32px;
 }
 
@@ -33,21 +33,21 @@
 .label {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: rgba(15, 23, 42, 0.6);
+  color: rgba(255, 255, 255, 0.7);
   margin-bottom: 4px;
 }
 
 .value {
   font-family: var(--font-sans);
   font-size: 16px;
-  color: var(--text-primary);
+  color: #fff;
 }
 
 .btn {
   margin-top: 12px;
   background-color: transparent;
-  border: 1px solid var(--accent-blue);
-  color: var(--accent-blue);
+  border: 1px solid #fff;
+  color: #fff;
   font-family: var(--font-mono);
   font-size: 12px;
   padding: 12px;
@@ -57,13 +57,13 @@
 }
 
 .card:hover {
-  border-color: var(--accent-blue);
-  background-color: rgba(59, 130, 246, 0.05);
+  border-color: #fff;
+  box-shadow: 0 8px 32px rgba(0, 61, 165, 0.4);
 }
 
 .card:hover .btn {
-  background-color: var(--accent-blue);
-  color: #fff;
+  background-color: #fff;
+  color: var(--primary);
 }
 
 @media (max-width: 768px) {

@@ -1,114 +1,110 @@
 .section {
   padding: 80px 0;
+  background: linear-gradient(180deg, rgba(245, 248, 255, 0.78) 0%, rgba(237, 242, 252, 0.72) 60%, rgba(245, 248, 255, 0.78) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   position: relative;
-  z-index: 10;
+  overflow: hidden;
+  transition: background 0.4s ease;
+}
+
+/* Soft inner shadow at top for depth */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(0, 61, 165, 0.03) 0%, transparent 100%);
+  pointer-events: none;
 }
 
 .header {
-  margin-bottom: 48px;
+  margin-bottom: 40px;
+  position: relative;
 }
 
 .subtitle {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: rgba(15, 23, 42, 0.6);
+  font-size: 15px;
+  color: var(--text-muted);
   margin-top: 8px;
-  letter-spacing: 0.05em;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
+  position: relative;
 }
 
 .card {
-  background-color: var(--bg-surface);
-  border: 1px solid rgba(0, 100, 255, 0.2);
+  background-color: var(--primary);
+  border: 2px solid transparent;
   border-radius: 12px;
-  position: relative;
+  display: flex;
   overflow: hidden;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.topStrip {
-  height: 4px;
-  width: 100%;
+.leftBorder {
+  width: 4px;
+  flex-shrink: 0;
 }
 
 .cardBody {
   padding: 24px;
+  flex: 1;
 }
 
 .date {
-  font-family: var(--font-mono);
   font-size: 13px;
-  color: #4A90D9;
+  color: #8CC0FF;
+  font-weight: 500;
   margin-bottom: 8px;
 }
 
 .title {
-  font-family: var(--font-sans);
+  font-family: var(--font-heading);
   font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
   line-height: 1.4;
-  height: 50px;
 }
 
 .badges {
   display: flex;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .badge {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  background-color: rgba(0, 61, 165, 0.3);
-  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 4px 10px;
   border-radius: 4px;
-  letter-spacing: 0.1em;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .registerLink {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--text-primary);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
   transition: color 0.2s ease;
 }
 
-.coordLabel {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: #4A90D9;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+.registerLink:hover {
+  color: #8CC0FF;
 }
 
-/* Hover States */
+/* Hover */
 .card:hover {
-  border-color: var(--accent-blue);
-  border-width: 2px;
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-/* Fix border jump on hover by adjusting padding/margin or using box-sizing properly */
-/* Since it adds 1px border width, we can use inset box-shadow instead for a smoother effect or just rely on standard border */
-.card:hover .coordLabel {
-  opacity: 1;
-}
-
-.card:hover .registerLink {
-  color: var(--accent-blue);
+  border-color: #ffffff;
+  box-shadow: 0 8px 32px rgba(0, 61, 165, 0.4);
+  transform: translateY(-3px);
 }
 
 @media (max-width: 1024px) {
@@ -120,9 +116,5 @@
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
-  }
-  
-  .title {
-    height: auto;
   }
 }

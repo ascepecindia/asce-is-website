@@ -11,8 +11,8 @@
 }
 
 .card {
-  background-color: var(--bg-surface);
-  border: 1px solid rgba(0, 100, 255, 0.2);
+  background: var(--primary);
+  border: 2px solid transparent;
   border-radius: 8px;
   position: relative;
   overflow: hidden;
@@ -22,14 +22,14 @@
 }
 
 .card:hover {
-  background-color: var(--asce-blue);
-  border-color: var(--accent-blue);
+  border-color: #fff;
   transform: translateY(-8px);
+  box-shadow: 0 8px 32px rgba(0, 61, 165, 0.4);
 }
 
 .recommended {
-  border: 2px solid var(--accent-blue);
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+  border: 2px solid #fff;
+  box-shadow: 0 0 30px rgba(0, 61, 165, 0.4);
 }
 
 .accent {
@@ -41,13 +41,13 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background-color: var(--asce-blue);
+  background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
   font-family: var(--font-mono);
   font-size: 10px;
   padding: 4px 8px;
   border-radius: 4px;
-  border: 1px solid var(--accent-blue);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .cardHeader {
@@ -57,14 +57,14 @@
 .name {
   font-family: var(--font-bebas);
   font-size: 28px;
-  color: var(--text-primary);
+  color: #fff;
   margin-bottom: 8px;
 }
 
 .criteria {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: rgba(15, 23, 42, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.05em;
 }
 
@@ -79,7 +79,7 @@
   margin-bottom: 16px;
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--text-primary);
+  color: #fff;
 }
 
 .excluded {
@@ -87,35 +87,35 @@
 }
 
 .check {
-  color: var(--accent-blue);
+  color: #fff;
 }
 
 .excluded .check {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .footer {
   padding: 24px;
-  border-top: 1px solid rgba(0, 100, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .fee {
   font-family: var(--font-mono);
   font-size: 20px;
-  color: var(--text-primary);
+  color: #fff;
   margin-bottom: 16px;
 }
 
 .period {
   font-size: 12px;
-  color: rgba(15, 23, 42, 0.7);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .applyBtn {
   width: 100%;
   background: transparent;
-  border: 1px solid rgba(0, 61, 165, 0.3);
-  color: var(--asce-blue);
+  border: 1px solid #fff;
+  color: #fff;
   font-family: var(--font-bebas);
   font-size: 16px;
   padding: 10px;
@@ -123,17 +123,9 @@
   transition: all 0.3s ease;
 }
 
-.card:hover .name, 
-.card:hover .criteria, 
-.card:hover .benefit, 
-.card:hover .fee, 
-.card:hover .period,
 .card:hover .applyBtn {
-  color: #fff;
-}
-
-.card:hover .applyBtn {
-  border-color: #fff;
+  background: #fff;
+  color: var(--primary);
 }
 
 @media (max-width: 1200px) {

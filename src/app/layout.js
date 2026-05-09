@@ -1,44 +1,49 @@
-import { Bebas_Neue, DM_Mono, DM_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter, DM_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import ClientLayout from "@/components/ClientLayout";
 
-const bebasNeue = Bebas_Neue({
-  weight: '400',
-  variable: "--font-bebas-neue",
+const plusJakarta = Plus_Jakarta_Sans({
+  weight: ['700'],
+  variable: "--font-heading",
+  subsets: ["latin"],
+  display: 'swap',
+});
+
+const inter = Inter({
+  weight: ['400', '500', '600', '700'],
+  variable: "--font-body",
   subsets: ["latin"],
   display: 'swap',
 });
 
 const dmMono = DM_Mono({
   weight: ['400', '500'],
-  variable: "--font-dm-mono",
-  subsets: ["latin"],
-  display: 'swap',
-});
-
-const dmSans = DM_Sans({
-  weight: ['400', '600', '700'],
-  variable: "--font-dm-sans",
+  variable: "--font-mono",
   subsets: ["latin"],
   display: 'swap',
 });
 
 export const metadata = {
-  title: "ASCE India Section | Blueprint Reborn",
-  description: "Engineering India's Future - ASCE India Section Website",
+  title: "ASCE India Section",
+  description: "Engineering India's Future — American Society of Civil Engineers, India Section",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${bebasNeue.variable} ${dmMono.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${plusJakarta.variable} ${inter.variable} ${dmMono.variable}`}
     >
-      <body className="min-h-full flex flex-col relative">
+      <body>
         <Navigation />
-        <main className="flex-1 w-full">
-          {children}
-        </main>
+        <ClientLayout>
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </ClientLayout>
       </body>
     </html>
   );

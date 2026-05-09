@@ -5,21 +5,21 @@ import styles from './NewsStrip.module.css';
 const NEWS = [
   {
     id: 1,
-    date: "2024.04.12",
+    date: "April 12, 2024",
     headline: "New Seismic Design Code Guidelines Released",
     excerpt: "The latest updates to IS 1893 reflect modern computational approaches to earthquake-resistant structural design.",
     slug: "seismic-design-code"
   },
   {
     id: 2,
-    date: "2024.03.28",
+    date: "March 28, 2024",
     headline: "ASCE India Section Wins Outstanding International Branch",
-    excerpt: "Recognized globally for our commitment to student mentorship and technical excellence programs across the subcontinent.",
+    excerpt: "Recognized globally for our commitment to student mentorship and technical excellence programmes across the subcontinent.",
     slug: "outstanding-international-branch"
   },
   {
     id: 3,
-    date: "2024.03.15",
+    date: "March 15, 2024",
     headline: "Call for Papers: Sustainable Concrete Tech",
     excerpt: "Submit your abstracts for the upcoming special issue of the ASCE India Technical Journal on green building materials.",
     slug: "call-for-papers"
@@ -30,7 +30,8 @@ export default function NewsStrip() {
   return (
     <section className={styles.section}>
       <div className="container">
-        {/* News Teaser Grid */}
+        <h2 className={styles.heading}>Latest News</h2>
+        
         <div className={styles.newsGrid}>
           {NEWS.map((item) => (
             <div key={item.id} className={styles.newsCard}>
@@ -38,33 +39,30 @@ export default function NewsStrip() {
               <h3 className={styles.headline}>{item.headline}</h3>
               <p className={styles.excerpt}>{item.excerpt}</p>
               <Link href={`/news/${item.slug}`} className={styles.readLink}>
-                READ &rarr;
+                Read more →
               </Link>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Newsletter CTA Band */}
+      {/* Newsletter CTA */}
       <div className={styles.newsletterBand}>
         <div className="container">
           <div className={styles.newsletterContent}>
-            <h2 className="text-section" style={{ fontSize: '36px', marginBottom: '24px' }}>
-              STAY UPDATED WITH ASCE INDIA SECTION
-            </h2>
+            <h2>Stay Updated</h2>
+            <p className={styles.newsletterDesc}>
+              Get the latest news, event invitations, and technical updates from ASCE India Section.
+            </p>
             
-            <form className={styles.terminalForm} onSubmit={(e) => e.preventDefault()}>
-              <div className={styles.prompt}>
-                <span className={styles.promptUser}>user@asce-india:~$</span>
-                <input 
-                  type="email" 
-                  className={styles.input} 
-                  placeholder="enter email_" 
-                  required
-                />
-                <div className={styles.cursor}></div>
-              </div>
-              <button type="submit" className={styles.submitBtn}>SUBSCRIBE</button>
+            <form className={styles.emailForm} onSubmit={(e) => e.preventDefault()}>
+              <input 
+                type="email" 
+                className={styles.emailInput} 
+                placeholder="Enter your email address" 
+                required
+              />
+              <button type="submit" className="btn-primary">Subscribe</button>
             </form>
           </div>
         </div>

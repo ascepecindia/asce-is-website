@@ -1,120 +1,72 @@
 'use client';
+import Image from 'next/image';
 import styles from './Leadership.module.css';
 
 const LEADERS = [
   {
     id: 1,
-    name: "DR. VIKRAM SINGH",
-    title: "PRESIDENT",
-    branch: "NORTH",
-    yearsActive: "15 YEARS",
-    specialisation: "STRUCTURAL DYNAMICS",
-    bio: "Dr. Singh has led major infrastructure projects across the capital region and authored over 40 papers on earthquake engineering.",
-    tags: ["SEISMIC", "STEEL", "CODE_DEV"]
+    name: "Dr. Har Amrit Singh Sandhu",
+    title: "President",
+    institution: "Punjab Engineering College, Chandigarh",
+    specialisation: "GIS, Remote Sensing & Drone Technology",
+    bio: "Assistant Professor in Civil Engineering at PEC Chandigarh. Recipient of ASCE's Distinguished Service Medal (2025) and Outstanding Faculty Advisor Award. Pioneering the use of GIS, remote sensing, and drone technology in civil engineering education and practice across India.",
+    image: "/sandhu_profile.png",
+    linkedin: "https://www.linkedin.com/in/dr-har-amrit-singh-sandhu-2905a235/"
   },
   {
     id: 2,
-    name: "ANANYA RAO",
-    title: "VICE PRESIDENT",
-    branch: "SOUTH",
-    yearsActive: "12 YEARS",
-    specialisation: "URBAN MOBILITY",
-    bio: "Pioneering sustainable transport systems in tier-1 cities. Former chief engineer for the Metro Rail corporation.",
-    tags: ["TRANSIT", "POLICY", "URBAN"]
+    name: "Dr. Kavita Tandon",
+    title: "Secretary",
+    institution: "HBTU, Kanpur",
+    specialisation: "Geotechnical Earthquake Engineering",
+    bio: "Assistant Professor in Civil Engineering at Harcourt Butler Technical University, Kanpur. Ph.D. from IIT Delhi, M.Tech in Earthquake Engineering from IIT Roorkee. Expert in soil dynamics, machine foundations, and seismic geotechnical analysis.",
+    image: "/tandon.jpg",
+    linkedin: "https://www.linkedin.com/in/dr-kavita-tandon-65816a48/"
   },
   {
     id: 3,
-    name: "K. T. MATHEW",
-    title: "SECRETARY",
-    branch: "WEST",
-    yearsActive: "8 YEARS",
-    specialisation: "WATER RESOURCES",
-    bio: "Expert in hydrology and dam safety. Leads the technical committee for the national river linking project.",
-    tags: ["HYDRO", "DAMS", "CLIMATE"]
-  },
-  {
-    id: 4,
-    name: "SMRITI DAS",
-    title: "TREASURER",
-    branch: "EAST",
-    yearsActive: "10 YEARS",
-    specialisation: "GEOTECHNICAL",
-    bio: "Specializes in deep foundation design for high-rise structures in challenging soil conditions.",
-    tags: ["SOIL", "FOUNDATIONS", "PILING"]
-  },
-  {
-    id: 5,
-    name: "RAHUL VERMA",
-    title: "STUDENT CHAIR",
-    branch: "NORTH",
-    yearsActive: "4 YEARS",
-    specialisation: "CONSTRUCTION MGT.",
-    bio: "Bridging the gap between academia and industry. Drives the annual student concrete canoe competition.",
-    tags: ["MENTORSHIP", "ACADEMIA", "BIM"]
-  },
-  {
-    id: 6,
-    name: "PRIYANKA JOSHI",
-    title: "TECHNICAL CHAIR",
-    branch: "WEST",
-    yearsActive: "14 YEARS",
-    specialisation: "SUSTAINABILITY",
-    bio: "Lead author of the ASCE India guidelines on green building materials and low-carbon concrete.",
-    tags: ["GREEN_BLDG", "MATERIALS", "LCA"]
+    name: "Ashwani Kundal",
+    title: "Treasurer",
+    institution: "ASCE India Section",
+    specialisation: "Civil & Environmental Engineering",
+    bio: "Experienced civil engineer and dedicated ASCE India Section leader. Active contributor to the Indian Society of Earthquake Technology (ISET) and instrumental in managing the financial operations of the ASCE India Section.",
+    image: "/kundal.jpg",
+    linkedin: "https://www.linkedin.com/in/ashwani-kundal-2a4b8b1a/"
   }
 ];
 
 export default function Leadership() {
   return (
-    <section id="leadership" className={styles.section}>
+    <section className={styles.section}>
       <div className="container">
-        <h2 className="text-section">LEADERSHIP TEAM</h2>
-        
         <div className={styles.grid}>
           {LEADERS.map((leader) => (
-            <div key={leader.id} className={styles.cardWrapper}>
-              <div className={styles.cardInner}>
-                
-                {/* Front of Card */}
-                <div className={styles.cardFront}>
-                  <div className={styles.hexBorder}>
-                    <div className={styles.hexImage}></div>
-                  </div>
-                  <h3 className={styles.name}>{leader.name}</h3>
-                  <div className={styles.title}>{leader.title}</div>
-                  
-                  <div className={styles.specTable}>
-                    <div className={styles.specRow}>
-                      <span className={styles.specLabel}>BRANCH</span>
-                      <span className={styles.specValue}>{leader.branch}</span>
-                    </div>
-                    <div className={styles.specRow}>
-                      <span className={styles.specLabel}>ACTIVE</span>
-                      <span className={styles.specValue}>{leader.yearsActive}</span>
-                    </div>
-                    <div className={styles.specRow}>
-                      <span className={styles.specLabel}>SPEC.</span>
-                      <span className={styles.specValue}>{leader.specialisation}</span>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Back of Card */}
-                <div className={styles.cardBack}>
-                  <p className={styles.bio}>{leader.bio}</p>
-                  
-                  <div className={styles.tags}>
-                    {leader.tags.map(tag => (
-                      <span key={tag} className={styles.tag}>#{tag}</span>
-                    ))}
-                  </div>
-                  
-                  <a href="#" className={styles.connectBtn} onClick={(e) => e.preventDefault()}>
-                    $ connect --linkedin
-                  </a>
-                </div>
-                
+            <div key={leader.id} className={styles.card}>
+              <div className={styles.imageWrapper}>
+                <Image
+                  src={leader.image}
+                  alt={leader.name}
+                  width={160}
+                  height={160}
+                  className={styles.photo}
+                />
+                <div className={styles.titleBadge}>{leader.title}</div>
               </div>
+              <h3 className={styles.name}>{leader.name}</h3>
+              <div className={styles.institution}>{leader.institution}</div>
+              <div className={styles.specialisation}>{leader.specialisation}</div>
+              <p className={styles.bio}>{leader.bio}</p>
+              <a
+                href={leader.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.linkedinBtn}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+                View LinkedIn Profile
+              </a>
             </div>
           ))}
         </div>

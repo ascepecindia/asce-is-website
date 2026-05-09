@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './StatsBand.module.css';
 
 const STATS = [
-  { target: 13247, label: "MEMBERS", prefix: "", suffix: "+" },
-  { target: 4, label: "REGIONAL BRANCHES", prefix: "", suffix: "" },
-  { target: 36, label: "YEARS ACTIVE", prefix: "", suffix: "+" },
-  { target: 200, label: "ANNUAL EVENTS", prefix: "", suffix: "+" }
+  { target: 13247, label: "Members", prefix: "", suffix: "+" },
+  { target: 4, label: "Regional Branches", prefix: "", suffix: "" },
+  { target: 36, label: "Years Active", prefix: "", suffix: "+" },
+  { target: 200, label: "Annual Events", prefix: "", suffix: "+" }
 ];
 
 const easeOutQuint = (t) => 1 - Math.pow(1 - t, 5);
@@ -37,23 +37,16 @@ function Counter({ target, label, prefix, suffix }) {
     if (!isCounting) return;
 
     let startTime = null;
-    const duration = 2200; // 2.2 seconds
-    const overshoot = target > 10 ? 5 : 2; // Overshoot by 5 for large numbers, 2 for small
-    const totalTarget = target + overshoot;
+    const duration = 2200;
 
     const animateCount = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
       
       if (progress < duration) {
-        // Easing up to the overshoot target
         const percentage = progress / duration;
-        const currentCount = Math.floor(totalTarget * easeOutQuint(percentage));
+        const currentCount = Math.floor(target * easeOutQuint(percentage));
         setCount(currentCount);
-        requestAnimationFrame(animateCount);
-      } else if (progress < duration + 400) {
-        // Settle back to actual target
-        setCount(target);
         requestAnimationFrame(animateCount);
       } else {
         setCount(target);
@@ -66,11 +59,8 @@ function Counter({ target, label, prefix, suffix }) {
 
   return (
     <div className={styles.statBox} ref={elementRef}>
-      <div className={styles.numberWrapper}>
-        <span className={styles.number}>
-          {prefix}{count.toLocaleString()}{suffix}
-        </span>
-        {isCounting && <span className={styles.cursor}>_</span>}
+      <div className={styles.number}>
+        {prefix}{count.toLocaleString()}{suffix}
       </div>
       <div className={styles.label}>{label}</div>
     </div>
@@ -79,8 +69,8 @@ function Counter({ target, label, prefix, suffix }) {
 
 export default function StatsBand() {
   return (
-    <section className={styles.statsBand}>
-      <div className={`container ${styles.statsContainer}`}>
+    <section className={styles.band}>
+      <div className={`container ${styles.statsRow}`}>
         {STATS.map((stat, index) => (
           <div key={index} className={styles.statCol}>
             <Counter {...stat} />
