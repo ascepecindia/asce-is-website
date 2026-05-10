@@ -8,6 +8,7 @@ import styles from './Navigation.module.css';
 const NAV_LINKS = [
   { name: 'Home', path: '/' },
   { name: 'Office Bearers', path: '/about' },
+  { name: 'Regions', path: '/regions' },
   { name: 'Student Chapters', path: '/students' },
   { name: 'Events', path: '/events' },
   { name: 'Contact', path: '/contact' }
@@ -62,9 +63,14 @@ export default function Navigation() {
         </nav>
 
         <div className={styles.ctaArea}>
-          <Link href="/membership" className="btn-primary">
+          <a 
+            href="https://sp360.asce.org/personifyebusiness/Membership/Join-ASCE/MembershipJoinRegistration" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn-primary"
+          >
             Join ASCE
-          </Link>
+          </a>
           <button
             className={`${styles.hamburger} ${isMobileMenuOpen ? styles.hamburgerOpen : ''}`}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -89,9 +95,15 @@ export default function Navigation() {
               {link.name}
             </Link>
           ))}
-          <Link href="/membership" className="btn-primary" style={{ marginTop: '16px', width: '100%', justifyContent: 'center' }}>
+          <a 
+            href="https://sp360.asce.org/personifyebusiness/Membership/Join-ASCE/MembershipJoinRegistration" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn-primary" 
+            style={{ marginTop: '16px', width: '100%', justifyContent: 'center' }}
+          >
             Join ASCE
-          </Link>
+          </a>
         </nav>
       </div>
     </header>

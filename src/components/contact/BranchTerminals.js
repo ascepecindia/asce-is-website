@@ -1,21 +1,32 @@
 import styles from './BranchTerminals.module.css';
 
-const BRANCHES = [
-  { name: "North Branch", city: "New Delhi", email: "north@asce-india.org", color: "#3B82F6" },
-  { name: "South Branch", city: "Chennai", email: "south@asce-india.org", color: "#22D3EE" },
-  { name: "East Branch", city: "Kolkata", email: "east@asce-india.org", color: "#EF9F27" },
-  { name: "West Branch", city: "Mumbai", email: "west@asce-india.org", color: "#A855F7" }
+const IS_CONTACTS = [
+  { 
+    name: "Dr. Har Amrit Singh Sandhu", 
+    role: "President, ASCE India Section", 
+    email: "asceindia@gmail.com", 
+    phone: "+91 94635 94149",
+    color: "#003DA5" 
+  },
+  { 
+    name: "Dr. Kavita Tandon", 
+    role: "Secretary, ASCE India Section", 
+    email: "asceindia@gmail.com", 
+    phone: "+91 99140 14848",
+    color: "#00A9E0" 
+  }
 ];
 
 export default function BranchTerminals() {
   return (
     <div className={styles.container}>
-      <h3 className={styles.heading}>Branch Offices</h3>
-      {BRANCHES.map((b, i) => (
-        <div key={i} className={styles.card} style={{ borderLeftColor: b.color }}>
-          <div className={styles.branchName}>{b.name}</div>
-          <div className={styles.detail}>{b.city}</div>
-          <div className={styles.detail}>{b.email}</div>
+      <h3 className={styles.heading}>India Section (IS) Contacts</h3>
+      {IS_CONTACTS.map((c, i) => (
+        <div key={i} className={styles.card} style={{ borderLeftColor: c.color }}>
+          <div className={styles.branchName}>{c.name}</div>
+          <div className={styles.detail} style={{ fontWeight: 600, color: 'var(--asce-blue)' }}>{c.role}</div>
+          <div className={styles.detail}>Email: <a href={`mailto:${c.email}`}>{c.email}</a></div>
+          <div className={styles.detail}>Phone: {c.phone}</div>
         </div>
       ))}
     </div>

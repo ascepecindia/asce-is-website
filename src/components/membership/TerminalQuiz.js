@@ -3,21 +3,29 @@ import { useState, useEffect } from 'react';
 import styles from './TerminalQuiz.module.css';
 
 const QUESTIONS = [
-  { id: 1, text: "ARE YOU CURRENTLY ENROLLED IN AN ENGINEERING PROGRAM? [Y/N]", options: ["Y", "N"] },
-  { id: 2, text: "DO YOU HAVE MORE THAN 5 YEARS OF PROFESSIONAL EXPERIENCE? [Y/N]", options: ["Y", "N"] },
-  { id: 3, text: "ARE YOU LOOKING FOR INTERNATIONAL NETWORKING OPPORTUNITIES? [Y/N]", options: ["Y", "N"] }
+  { id: 1, text: "ENTER YOUR EMAIL ADDRESS:", type: "input" },
+  { id: 2, text: "ENTER YOUR FIRST NAME:", type: "input" },
+  { id: 3, text: "ENTER YOUR LAST NAME:", type: "input" },
+  { id: 4, text: "ENTER YOUR COUNTRY:", type: "input" },
+  { id: 5, text: "ENTER YOUR ADDRESS (LINE 1):", type: "input" },
+  { id: 6, text: "ENTER YOUR CITY:", type: "input" },
+  { id: 7, text: "ENTER YOUR PHONE NUMBER:", type: "input" },
+  { id: 8, text: "ARE YOU ENROLLED IN AN ENGINEERING PROGRAM? [Y/N]", options: ["Y", "N"] },
+  { id: 9, text: "DO YOU HAVE MORE THAN 5 YEARS OF PROFESSIONAL EXPERIENCE? [Y/N]", options: ["Y", "N"] }
 ];
 
 export default function TerminalQuiz() {
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  const [answers, setAnswers] = useState({});
+  const [inputValue, setInputValue] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
   const [result, setResult] = useState(null);
 
   const handleAnswer = (ans) => {
-    const newAnswers = [...answers, ans];
+    const newAnswers = { ...answers, [QUESTIONS[step].id]: ans };
     setAnswers(newAnswers);
+    setInputValue("");
     if (step < QUESTIONS.length - 1) {
       setStep(step + 1);
     } else {
@@ -41,12 +49,15 @@ export default function TerminalQuiz() {
   };
 
   const determineGrade = (ans) => {
-    if (ans[0] === 'Y') {
-      setResult({ grade: "STUDENT MEMBER", fee: "₹0 / YEAR", desc: "Access to all student chapters and competitions." });
-    } else if (ans[1] === 'Y') {
-      setResult({ grade: "PROFESSIONAL MEMBER", fee: "₹4,500 / YEAR", desc: "Full voting rights and leadership opportunities." });
+    const isStudent = ans[8] === 'Y';
+    const isExperienced = ans[9] === 'Y';
+    
+    if (isStudent) {
+      setResult({ grade: "STUDENT MEMBER", fee: "₹0 / YEAR", desc: "Access to all student chapters and competitions.", user: ans });
+    } else if (isExperienced) {
+      setResult({ grade: "PROFESSIONAL MEMBER", fee: "₹4,500 / YEAR", desc: "Full voting rights and leadership opportunities.", user: ans });
     } else {
-      setResult({ grade: "ASSOCIATE MEMBER", fee: "₹2,800 / YEAR", desc: "Professional networking and technical resources." });
+      setResult({ grade: "ASSOCIATE MEMBER", fee: "₹2,800 / YEAR", desc: "Professional networking and technical resources.", user: ans });
     }
   };
 
@@ -68,13 +79,34 @@ export default function TerminalQuiz() {
             <div className={styles.question}>
               Q{QUESTIONS[step].id} {'>'} {QUESTIONS[step].text}
             </div>
-            <div className={styles.options}>
-              {QUESTIONS[step].options.map(opt => (
-                <button key={opt} className={styles.optBtn} onClick={() => handleAnswer(opt)}>
-                  [{opt}]
+            {QUESTIONS[step].type === "input" ? (
+              <div className={styles.inputArea}>
+                <input 
+                  type="text" 
+                  value={inputValue} 
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && inputValue.trim() && handleAnswer(inputValue.trim())}
+                  className={styles.terminalInput}
+                  autoFocus
+                  placeholder="..."
+                />
+                <button 
+                  className={styles.optBtn} 
+                  onClick={() => inputValue.trim() && handleAnswer(inputValue.trim())}
+                  style={{ marginLeft: '12px' }}
+                >
+                  [ENTER]
                 </button>
-              ))}
-            </div>
+              </div>
+            ) : (
+              <div className={styles.options}>
+                {QUESTIONS[step].options.map(opt => (
+                  <button key={opt} className={styles.optBtn} onClick={() => handleAnswer(opt)}>
+                    [{opt}]
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -90,11 +122,31 @@ export default function TerminalQuiz() {
 
         {result && (
           <div className={styles.result}>
-            <div className={styles.prompt}>RECOMMENDED GRADE:</div>
+            <div className={styles.prompt}>PROFILE GENERATED FOR: {result.user[2]} {result.user[3]}</div>
+            <div className={styles.userData}>
+              <div className={styles.userRow}><span>EMAIL:</span> {result.user[1]}</div>
+              <div className={styles.userRow}><span>PHONE:</span> {result.user[7]}</div>
+              <div className={styles.userRow}><span>LOCATION:</span> {result.user[6]}, {result.user[4]}</div>
+            </div>
+            
+            <div className={styles.prompt} style={{ marginTop: '24px' }}>RECOMMENDED GRADE:</div>
             <div className={styles.gradeName}>{result.grade}</div>
             <div className={styles.fee}>{result.fee}</div>
             <p className={styles.desc}>{result.desc}</p>
-            <button className="btn-primary" style={{ marginTop: '20px', width: '100%' }}>APPLY NOW &rarr;</button>
+            
+            <div className={styles.notice}>
+              DATA PREPARED. CLICK BELOW TO SYNC WITH ASCE GLOBAL REGISTRATION.
+            </div>
+
+            <a 
+              href={`https://sp360.asce.org/personifyebusiness/Membership/Join-ASCE/MembershipJoinRegistration`} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn-primary" 
+              style={{ marginTop: '20px', width: '100%', display: 'inline-block', textAlign: 'center' }}
+            >
+              PROCEED TO ASCE REGISTRATION &rarr;
+            </a>
           </div>
         )}
       </div>

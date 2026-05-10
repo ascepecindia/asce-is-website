@@ -12,7 +12,7 @@ export default function Contact() {
       <div className="page-hero">
         <div className="container">
           <h1>Get in Touch</h1>
-          <p>We'd love to hear from you — reach out to any of our regional branch offices</p>
+          <p>We'd love to hear from you — reach out to the ASCE India Section central leadership</p>
         </div>
       </div>
       

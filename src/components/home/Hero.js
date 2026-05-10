@@ -39,9 +39,14 @@ export default function Hero() {
             <Link href="/events" className="btn-hero-primary">
               Explore Events
             </Link>
-            <Link href="/membership" className="btn-hero-secondary">
+            <a 
+              href="https://sp360.asce.org/personifyebusiness/Membership/Join-ASCE/MembershipJoinRegistration" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="btn-hero-secondary"
+            >
               Join ASCE
-            </Link>
+            </a>
           </div>
         </div>
       </div>
