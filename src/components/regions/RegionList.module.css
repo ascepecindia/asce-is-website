@@ -104,13 +104,28 @@
 .details {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
+}
+
+.bearersList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed rgba(0, 61, 165, 0.12);
+}
+
+.bearerRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .row {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  margin-top: 4px;
 }
 
 .label {
