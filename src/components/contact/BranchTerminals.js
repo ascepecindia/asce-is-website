@@ -1,19 +1,26 @@
 import styles from './BranchTerminals.module.css';
 
 const IS_CONTACTS = [
-  { 
-    name: "Dr. Har Amrit Singh Sandhu", 
-    role: "President, ASCE India Section", 
-    email: "asceindia@gmail.com", 
+  {
+    name: "Har Amrit Singh Sandhu, Ph.D., A.M.ASCE",
+    role: "President, ASCE India Section",
+    email: "hassandhu@pec.edu.in",
     phone: "+91 94635 94149",
-    color: "#003DA5" 
+    color: "#003DA5"
   },
-  { 
-    name: "Dr. Kavita Tandon", 
-    role: "Secretary, ASCE India Section", 
-    email: "asceindia@gmail.com", 
+  {
+    name: "Kavita Tandon, Ph.D., A.M.ASCE",
+    role: "Secretary, ASCE India Section",
+    email: "kavita.tandon2008@gmail.com",
     phone: "+91 99140 14848",
-    color: "#00A9E0" 
+    color: "#00A9E0"
+  },
+  {
+    name: "Ashwani Kundal, Aff.M.ASCE",
+    role: "Treasurer, ASCE India Section",
+    email: "ashwanikundal199@gmail.com",
+    phone: "",
+    color: "#00B388"
   }
 ];
 

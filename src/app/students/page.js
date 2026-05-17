@@ -1,5 +1,3 @@
-import IndiaMap from '@/components/students/IndiaMap';
-
 export const metadata = {
   title: "Student Chapters | ASCE India Section",
   description: "47 student chapters across the Indian subcontinent — empowering the next generation of civil engineers.",
@@ -43,8 +41,6 @@ export default function Students() {
           </a>
         </div>
       </section>
-
-      <IndiaMap />
     </>
   );
 }

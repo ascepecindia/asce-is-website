@@ -8,19 +8,9 @@ const REGIONS = [
     website: "https://asceisnorthernregion.org",
     email: "asceisnr@gmail.com",
     bearers: [
-      { title: "President", name: "Dr. Arshdeep Singh" },
-      { title: "Secretary", name: "Dr. Ankit Bansal" },
-    ]
-  },
-  {
-    name: "Southern Region (IS-SR)",
-    color: "#00A9E0",
-    website: "https://www.asceissr.com",
-    email: "asceissr@gmail.com",
-    bearers: [
-      { title: "President", name: "S. Pradeep" },
-      { title: "Secretary", name: "Elson John" },
-      { title: "Treasurer", name: "Dr. Kishor Pankan" },
+      { title: "President", name: "Arshdeep Singh, Ph.D., Aff.M.ASCE", email: "arshdeepsingh@pec.edu.in" },
+      { title: "Secretary", name: "Ankit Bansal, Ph.D., Aff.M.ASCE", email: "ankitbansal596@gmail.com" },
+      { title: "Treasurer", name: "Saswati Datta, Ph.D., Aff.M.ASCE", email: "saswati.datta@ddn.upes.ac.in" },
     ]
   },
   {
@@ -29,8 +19,9 @@ const REGIONS = [
     website: null,
     email: "asceiser@gmail.com",
     bearers: [
-      { title: "President", name: "Dr. Sandip Kumar Deb" },
-      { title: "Secretary", name: "Dilip Kumar Dhar" },
+      { title: "President", name: "Sandip Kumar Deb, BEngr, LL.B., MSc, M.ASCE", email: "sandip@valuerdeb.com" },
+      { title: "Secretary", name: "Dilip Kumar Dhar, C.Eng., M.ASCE", email: "dkandhar@gmail.com" },
+      { title: "Treasurer", name: "Piyali Sengupta, Ph.D., M.ASCE", email: "piyali@iitism.ac.in" },
     ]
   },
   {
@@ -39,9 +30,20 @@ const REGIONS = [
     website: null,
     email: "asceiswr@gmail.com",
     bearers: [
-      { title: "President", name: "Ravi Sinha" },
-      { title: "Secretary", name: "Yasser Khizer Fatehi" },
-      { title: "Treasurer", name: "Hiten R. Mahimtura" },
+      { title: "President", name: "Ravi Sinha, Ph.D., M.ASCE", email: "rsinha@civil.iitb.ac.in" },
+      { title: "Secretary", name: "Yasser Khizer Fatehi, P.E., M.ASCE", email: "kyfatehiconstructions@gmail.com" },
+      { title: "Treasurer", name: "Hiten R. Mahimtura, P.E., M.ASCE", email: "hiten@mahimtura.net" },
+    ]
+  },
+  {
+    name: "Southern Region (IS-SR)",
+    color: "#00A9E0",
+    website: "https://www.asceissr.com",
+    email: "asceissr@gmail.com",
+    bearers: [
+      { title: "President", name: "S. Pradeep, M.ASCE", email: "pradeeps@srmist.edu.in" },
+      { title: "Secretary", name: "Elson John, Ph.D., S.E., M.ASCE", email: "elson@mace.ac.in" },
+      { title: "Treasurer", name: "Kishor Pankan, MBA, Ph.D., PMP, Prince2, A.M.ASCE", email: "habiletelearningsolutions@gmail.com" },
     ]
   }
 ];
@@ -53,7 +55,7 @@ export default function RegionList() {
         <div className={styles.dots}>
           <span></span><span></span><span></span>
         </div>
-        <div className={styles.title}>REGIONAL_RECORDS_INDEX v2.4</div>
+        <div className={styles.title}>REGIONAL_RECORDS_INDEX — Term 2025–2027</div>
       </div>
 
       <div className={styles.content}>
@@ -75,12 +77,13 @@ export default function RegionList() {
                     <div key={j} className={styles.bearerRow}>
                       <span className={styles.label}>{bearer.title}:</span>
                       <span className={styles.value}>{bearer.name}</span>
+                      <a href={`mailto:${bearer.email}`} className={styles.emailValue}>{bearer.email}</a>
                     </div>
                   ))}
                 </div>
 
                 <div className={styles.row} style={{ marginTop: '16px' }}>
-                  <span className={styles.label}>EMAIL:</span>
+                  <span className={styles.label}>BRANCH EMAIL:</span>
                   <a href={`mailto:${region.email}`} className={styles.emailValue}>{region.email}</a>
                 </div>
 

@@ -3,6 +3,23 @@
   position: relative;
 }
 
+.termHeader {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.termBadge {
+  display: inline-block;
+  background: rgba(0, 61, 165, 0.08);
+  border: 1px solid rgba(0, 61, 165, 0.2);
+  color: #003DA5;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: 100px;
+  letter-spacing: 0.03em;
+}
+
 /* Subtle background pattern */
 .section::before {
   content: '';
@@ -111,8 +128,23 @@
   font-size: 14px;
   color: var(--text-muted);
   line-height: 1.65;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   flex: 1;
+}
+
+.emailLink {
+  display: inline-block;
+  font-size: 13px;
+  color: #003DA5;
+  text-decoration: none;
+  margin-bottom: 16px;
+  word-break: break-all;
+  transition: color 0.2s ease;
+}
+
+.emailLink:hover {
+  color: #0052cc;
+  text-decoration: underline;
 }
 
 .linkedinBtn {

@@ -1,34 +1,36 @@
 'use client';
-import Image from 'next/image';
 import styles from './Leadership.module.css';
 
 const LEADERS = [
   {
     id: 1,
-    name: "Dr. Har Amrit Singh Sandhu",
+    name: "Har Amrit Singh Sandhu, Ph.D., A.M.ASCE",
     title: "President",
-    institution: "Punjab Engineering College, Chandigarh",
+    institution: "Punjab Engineering College (PEC), Chandigarh",
     specialisation: "GIS, Remote Sensing & Drone Technology",
+    email: "hassandhu@pec.edu.in",
     bio: "Assistant Professor in Civil Engineering at PEC Chandigarh. Recipient of ASCE's Distinguished Service Medal (2025) and Outstanding Faculty Advisor Award. Pioneering the use of GIS, remote sensing, and drone technology in civil engineering education and practice across India.",
     image: "/sandhu_profile.png",
     linkedin: "https://www.linkedin.com/in/har-amrit-singh-sandhu/"
   },
   {
     id: 2,
-    name: "Dr. Kavita Tandon",
+    name: "Kavita Tandon, Ph.D., A.M.ASCE",
     title: "Secretary",
     institution: "HBTU, Kanpur",
     specialisation: "Geotechnical Earthquake Engineering",
+    email: "kavita.tandon2008@gmail.com",
     bio: "Assistant Professor in Civil Engineering at Harcourt Butler Technical University, Kanpur. Ph.D. from IIT Delhi, M.Tech in Earthquake Engineering from IIT Roorkee. Expert in soil dynamics, machine foundations, and seismic geotechnical analysis.",
     image: "/tandon.jpg",
     linkedin: "https://www.linkedin.com/in/dr-kavita-tandon-29843a23/"
   },
   {
     id: 3,
-    name: "Ashwani Kundal",
+    name: "Ashwani Kundal, Aff.M.ASCE",
     title: "Treasurer",
     institution: "ASCE India Section",
     specialisation: "Civil & Environmental Engineering",
+    email: "ashwanikundal199@gmail.com",
     bio: "Experienced civil engineer and dedicated ASCE India Section leader. Active contributor to the Indian Society of Earthquake Technology (ISET) and instrumental in managing the financial operations of the ASCE India Section.",
     image: "/kundal.jpg",
     linkedin: "https://www.linkedin.com/in/ashwani-kundal-318705138/"
@@ -39,11 +41,14 @@ export default function Leadership() {
   return (
     <section className={styles.section}>
       <div className="container">
+        <div className={styles.termHeader}>
+          <span className={styles.termBadge}>Term: April 1, 2025 – March 31, 2027</span>
+        </div>
         <div className={styles.grid}>
           {LEADERS.map((leader) => (
             <div key={leader.id} className={styles.card}>
               <div className={styles.imageWrapper}>
-                <Image
+                <img
                   src={leader.image}
                   alt={leader.name}
                   width={160}
@@ -55,6 +60,7 @@ export default function Leadership() {
               <h3 className={styles.name}>{leader.name}</h3>
               <div className={styles.institution}>{leader.institution}</div>
               <div className={styles.specialisation}>{leader.specialisation}</div>
+              <a href={`mailto:${leader.email}`} className={styles.emailLink}>{leader.email}</a>
               <p className={styles.bio}>{leader.bio}</p>
               <a
                 href={leader.linkedin}
