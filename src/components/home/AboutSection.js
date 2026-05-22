@@ -38,6 +38,15 @@ const TABS = [
       heading: 'Open to All Civil Engineering Professionals',
       body: 'ASCE membership is open to students, early-career professionals, and experienced engineers alike. As a member of the ASCE India Section, you gain access to a global network of over 150,000 civil engineers worldwide, technical journals and publications, CE Talks and webinars, discounted conference registrations, leadership opportunities within the Section and its branches, and recognition programmes for outstanding contributions. Student membership is available at no cost, making it accessible for the next generation of Indian civil engineers to connect with a world-class professional community from day one.'
     }
+  },
+  {
+    id: 'student_events',
+    label: 'Student Events',
+    icon: '🎓',
+    content: {
+      heading: 'Student-Oriented Activities',
+      body: ''
+    }
   }
 ];
 
@@ -71,24 +80,51 @@ export default function AboutSection() {
 
           {/* Content panel */}
           <div className={styles.panel}>
-            <h3 className={styles.panelHeading}>{active.content.heading}</h3>
-            <p className={styles.panelBody}>{active.content.body}</p>
+            {activeTab === 'student_events' ? (
+              <div className={styles.comingSoon}>
+                <div className={styles.comingSoonIcon}>🎓</div>
+                <h3 className={styles.panelHeading}>Student-Oriented Activities</h3>
+                <p className={styles.panelBody} style={{ marginBottom: '28px' }}>
+                  This section will feature student-oriented events, competitions, workshops, field visits,
+                  and mentorship opportunities organised by ASCE India Section and its 47 student chapters.
+                </p>
+                <div className={styles.activityTags}>
+                  {['Technical Competitions', 'Bridge Building Contest', 'Concrete Canoe', 'Mentorship Programme', 'Field Visits', 'Webinars & CE Talks', 'Student Chapter Awards'].map((tag, i) => (
+                    <span key={i} className={styles.activityTag}>{tag}</span>
+                  ))}
+                </div>
+                <div className={styles.loadingBanner}>
+                  <span className={styles.loadingDot}></span>
+                  <span className={styles.loadingDot}></span>
+                  <span className={styles.loadingDot}></span>
+                  <span className={styles.loadingText}>Information Loading Soon — Check Back Shortly</span>
+                </div>
+                <a href="/students" className="btn-primary" style={{ marginTop: '28px', display: 'inline-flex' }}>
+                  Visit Student Chapters →
+                </a>
+              </div>
+            ) : (
+              <>
+                <h3 className={styles.panelHeading}>{active.content.heading}</h3>
+                <p className={styles.panelBody}>{active.content.body}</p>
 
-            {activeTab === 'membership' && (
-              <a
-                href="https://sp360.asce.org/personifyebusiness/Membership/Join-ASCE/MembershipJoinRegistration"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-                style={{ marginTop: '24px', display: 'inline-flex' }}
-              >
-                Join ASCE Today →
-              </a>
-            )}
-            {activeTab === 'structure' && (
-              <a href="/regions" className="btn-primary" style={{ marginTop: '24px', display: 'inline-flex' }}>
-                View Regional Branches →
-              </a>
+                {activeTab === 'membership' && (
+                  <a
+                    href="https://sp360.asce.org/personifyebusiness/Membership/Join-ASCE/MembershipJoinRegistration"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary"
+                    style={{ marginTop: '24px', display: 'inline-flex' }}
+                  >
+                    Join ASCE Today →
+                  </a>
+                )}
+                {activeTab === 'structure' && (
+                  <a href="/regions" className="btn-primary" style={{ marginTop: '24px', display: 'inline-flex' }}>
+                    View Regional Branches →
+                  </a>
+                )}
+              </>
             )}
           </div>
         </div>
