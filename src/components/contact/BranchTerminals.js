@@ -11,7 +11,7 @@ const IS_CONTACTS = [
   {
     name: "Kavita Tandon, Ph.D., A.M.ASCE",
     role: "Secretary, ASCE India Section",
-    email: "kavita.tandon2008@gmail.com",
+    email: "secretary.asceindia@gmail.com",
     phone: "+91 99140 14848",
     color: "#00A9E0"
   },
