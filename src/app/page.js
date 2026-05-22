@@ -2,7 +2,6 @@ import Hero from '@/components/home/Hero';
 import StatsBand from '@/components/home/StatsBand';
 import AboutSection from '@/components/home/AboutSection';
 import FocusAreas from '@/components/home/FocusAreas';
-import SVGDraw from '@/components/home/SVGDraw';
 import Highlights from '@/components/home/Highlights';
 import MemberCarousel from '@/components/home/MemberCarousel';
 import NewsStrip from '@/components/home/NewsStrip';
@@ -19,7 +18,6 @@ export default function Home() {
       <StatsBand />
       <AboutSection />
       <FocusAreas />
-      <SVGDraw />
       <Highlights />
       <MemberCarousel />
       <NewsStrip />
