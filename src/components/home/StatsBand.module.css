@@ -1,24 +1,52 @@
+/* ── StatsBand  ·  Glass Counter Band ──────────────────── */
+
 .band {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(245, 248, 255, 0.78) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  padding: 48px 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(245, 248, 255, 0.85) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 1px solid rgba(226, 235, 246, 0.6);
+  padding: 56px 0;
   position: relative;
   overflow: hidden;
-  transition: background 0.4s ease;
 }
 
-/* Subtle dot pattern overlay */
+/* Subtle dot-grid overlay */
 .band::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(0, 61, 165, 0.04) 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 61, 165, 0.035) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
   pointer-events: none;
 }
+
+/* Soft radial glow in center */
+.band::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse,
+    rgba(0, 61, 165, 0.045) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ── Row layout ───────────────────────────────────────── */
 
 .statsRow {
   display: flex;
@@ -35,56 +63,172 @@
   position: relative;
 }
 
+/* ── Single stat ──────────────────────────────────────── */
+
 .statBox {
   flex: 1;
   text-align: center;
-  padding: 0 16px;
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+.statBoxVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Icon container ───────────────────────────────────── */
+
+.iconWrap {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(0, 61, 165, 0.06);
+  border: 1px solid rgba(0, 61, 165, 0.1);
+  color: var(--primary);
+  transition: box-shadow 0.4s ease, background 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.iconWrap svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Glow ring while counting */
+.iconGlow {
+  background: rgba(0, 61, 165, 0.1);
+  border-color: rgba(0, 85, 212, 0.3);
+  box-shadow: 0 0 0 4px rgba(0, 61, 165, 0.08),
+    0 0 20px rgba(0, 61, 165, 0.12);
+  animation: iconPulse 1.2s ease-in-out infinite;
+}
+
+/* Settled state after count finishes */
+.iconSettled {
+  background: rgba(0, 61, 165, 0.08);
+  border-color: rgba(0, 61, 165, 0.15);
+  box-shadow: 0 0 0 3px rgba(0, 61, 165, 0.06);
+  animation: none;
+}
+
+@keyframes iconPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 4px rgba(0, 61, 165, 0.08),
+      0 0 20px rgba(0, 61, 165, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(0, 61, 165, 0.04),
+      0 0 30px rgba(0, 61, 165, 0.18);
+  }
+}
+
+/* ── Number ───────────────────────────────────────────── */
 
 .number {
   font-family: var(--font-body);
-  font-weight: 700;
-  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 800;
+  font-size: clamp(28px, 3vw, 44px);
   color: var(--primary);
   line-height: 1;
-  margin-bottom: 8px;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
 }
 
+/* ── Label ────────────────────────────────────────────── */
+
 .label {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 500;
+  font-family: var(--font-mono, var(--font-body));
+  font-size: 11.5px;
+  font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.08em;
 }
+
+/* ── Gradient underline ───────────────────────────────── */
+
+.underline {
+  width: 40px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    rgba(0, 85, 212, 0.4) 100%
+  );
+  margin-top: 2px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.underlineActive {
+  transform: scaleX(1);
+}
+
+/* ── Gradient divider ─────────────────────────────────── */
 
 .divider {
   width: 1px;
-  height: 40px;
-  background: linear-gradient(180deg, transparent 0%, var(--border) 50%, transparent 100%);
+  height: 56px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 61, 165, 0.12) 30%,
+    rgba(0, 61, 165, 0.18) 50%,
+    rgba(0, 61, 165, 0.12) 70%,
+    transparent 100%
+  );
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  flex-shrink: 0;
 }
 
+/* ── Responsive ───────────────────────────────────────── */
+
 @media (max-width: 768px) {
+  .band {
+    padding: 44px 0;
+  }
+
   .statsRow {
     flex-wrap: wrap;
-    gap: 32px 0;
+    gap: 36px 0;
   }
+
   .statCol {
     flex: 0 0 50%;
   }
+
   .divider {
     display: none;
   }
 }
 
 @media (max-width: 480px) {
+  .band {
+    padding: 36px 0;
+  }
+
   .statCol {
     flex: 0 0 100%;
+  }
+
+  .statBox {
+    padding: 4px 0;
   }
 }

@@ -1,5 +1,5 @@
 .section {
-  padding: 96px 0;
+  padding: 120px 0;
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -17,27 +17,40 @@
 
 .sectionLabel {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--primary);
-  letter-spacing: 0.15em;
-  margin-bottom: 12px;
+  letter-spacing: 0.2em;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionLabel::before,
+.sectionLabel::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--primary);
+  opacity: 0.3;
 }
 
 .heading {
-  font-size: 36px;
+  font-size: clamp(28px, 3.5vw, 42px);
   font-weight: 800;
   color: var(--text);
   margin-bottom: 16px;
   line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 .subheading {
   font-size: 17px;
   color: var(--text-muted);
   max-width: 580px;
-  line-height: 1.7;
-  margin-bottom: 52px;
+  line-height: 1.75;
+  margin-bottom: 56px;
 }
 
 .layout {

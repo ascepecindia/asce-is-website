@@ -1,188 +1,585 @@
+/* ============================================================
+   HERO — Immersive Engineering-Themed Full-Viewport Hero
+   ASCE India Section
+   ============================================================ */
+
+/* ---- Root Section ---- */
 .hero {
   position: relative;
-  min-height: 620px;
-  padding-top: 72px; /* nav height */
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  background: rgba(0, 24, 69, 0.4);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  justify-content: center;
+  background: linear-gradient(135deg, #000C24 0%, #001845 30%, #003DA5 70%, #0055D4 100%);
   overflow: hidden;
-  transition: background 0.4s ease;
+  isolation: isolate;
 }
 
-/* Animated mesh background */
-.meshBg {
+/* ---- Animated Blueprint Grid ---- */
+.blueprintGrid {
+  position: absolute;
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 60px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 0px,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px,
+      transparent 60px
+    ),
+    /* Major grid lines every 5th cell */
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.06) 0px,
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px,
+      transparent 300px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.06) 0px,
+      rgba(255, 255, 255, 0.06) 1px,
+      transparent 1px,
+      transparent 300px
+    );
+  animation: gridBreathe 16s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes gridBreathe {
+  0% {
+    transform: scale(1) rotate(0deg) translate(0, 0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.04) rotate(0.3deg) translate(-1%, 0.5%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(-0.2deg) translate(0.5%, -0.5%);
+    opacity: 0.8;
+  }
+}
+
+/* ---- Mesh Radial Glow ---- */
+.meshGlow {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0, 85, 212, 0.3) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(26, 107, 224, 0.2) 0%, transparent 50%),
-    radial-gradient(ellipse 40% 40% at 90% 10%, rgba(0, 43, 122, 0.25) 0%, transparent 50%);
-  animation: meshFloat 12s ease-in-out infinite alternate;
+    radial-gradient(ellipse 70% 50% at 65% 35%, rgba(0, 85, 212, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 15% 75%, rgba(26, 107, 224, 0.2) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 35% at 85% 15%, rgba(0, 43, 122, 0.2) 0%, transparent 50%);
+  animation: meshDrift 14s ease-in-out infinite alternate;
   pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes meshFloat {
+@keyframes meshDrift {
   0% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.05) translate(-2%, 1%); }
-  100% { transform: scale(1) translate(1%, -1%); }
+  50% { transform: scale(1.06) translate(-2%, 1.5%); }
+  100% { transform: scale(1.02) translate(1%, -1%); }
 }
 
-/* Grid pattern overlay */
-.gridPattern {
+/* ---- Floating Engineering Elements ---- */
+.floatingElements {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
   pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
 }
 
-/* Radial glow behind text */
-.glowAccent {
+.engElement {
   position: absolute;
-  top: 40%;
-  left: 15%;
-  width: 500px;
-  height: 400px;
-  background: radial-gradient(ellipse, rgba(0, 85, 212, 0.25) 0%, transparent 70%);
-  transform: translate(-30%, -50%);
-  pointer-events: none;
-  filter: blur(40px);
+  opacity: 0;
+  animation: engFloat linear infinite;
+  will-change: transform, opacity;
 }
 
-/* Floating particles */
-.particles {
+/* Depth layers via z-index + opacity */
+.engElement[data-depth="far"] {
+  opacity: 0.04;
+  z-index: 0;
+  filter: blur(1px);
+}
+.engElement[data-depth="mid"] {
+  opacity: 0.07;
+  z-index: 1;
+}
+.engElement[data-depth="near"] {
+  opacity: 0.12;
+  z-index: 2;
+}
+
+@keyframes engFloat {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  5% {
+    opacity: var(--elem-opacity, 0.07);
+  }
+  90% {
+    opacity: var(--elem-opacity, 0.07);
+  }
+  100% {
+    transform: translateY(-110vh) rotate(25deg) scale(0.85);
+    opacity: 0;
+  }
+}
+
+/* ---- Particle Field ---- */
+.particleField {
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
+  z-index: 3;
 }
 
 .particle {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 50%;
   bottom: -10px;
-  animation: particleFloat 8s ease-in-out infinite;
+  border-radius: 50%;
+  animation: sparkRise linear infinite;
+  will-change: transform, opacity;
 }
 
-@keyframes particleFloat {
+/* Tiny glowing dots */
+.particle::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  background: inherit;
+  filter: blur(3px);
+  opacity: 0.5;
+}
+
+@keyframes sparkRise {
   0% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0) translateX(0);
     opacity: 0;
   }
-  10% {
-    opacity: 0.6;
+  8% {
+    opacity: var(--spark-opacity, 0.6);
   }
-  90% {
-    opacity: 0.2;
+  85% {
+    opacity: var(--spark-opacity, 0.3);
   }
   100% {
-    transform: translateY(-620px) scale(0.5);
+    transform: translateY(calc(-100vh - 40px)) translateX(var(--spark-drift, 20px));
     opacity: 0;
   }
 }
 
+/* ---- Content Layer ---- */
 .content {
   position: relative;
-  z-index: 2;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  z-index: 10;
+  padding-top: 120px;
+  padding-bottom: 100px;
+  width: 100%;
 }
 
 .textBlock {
-  max-width: 640px;
+  max-width: 720px;
 }
 
-/* Badge */
+/* ---- Status Badge ---- */
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  gap: 10px;
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 100px;
   font-family: var(--font-body);
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 24px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 28px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  animation: badgeFadeIn 0.8s ease-out 0.2s both;
+  letter-spacing: 0.01em;
+}
+
+@keyframes badgeFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .badgeDot {
-  width: 6px;
-  height: 6px;
-  background: #22D3EE;
+  width: 8px;
+  height: 8px;
+  background: #34D399;
   border-radius: 50%;
-  animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+  animation: dotPulse 2s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.3); }
+@keyframes dotPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.4);
+    box-shadow: 0 0 12px rgba(52, 211, 153, 0.4);
+  }
 }
 
+/* ---- Headline ---- */
 .title {
   font-family: var(--font-heading);
-  font-size: clamp(34px, 5vw, 52px);
-  font-weight: 700;
+  font-size: clamp(36px, 5.5vw, 64px);
+  font-weight: 800;
   color: #fff;
-  line-height: 1.12;
-  margin-bottom: 20px;
-  letter-spacing: -0.02em;
+  line-height: 1.08;
+  margin-bottom: 24px;
+  letter-spacing: -0.03em;
+  min-height: 1.2em;
 }
 
+/* Typing cursor */
+.cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  background: rgba(255, 255, 255, 0.85);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: cursorBlink 0.7s ease-in-out infinite;
+  border-radius: 1px;
+}
+
+.cursorHidden {
+  opacity: 0;
+}
+
+@keyframes cursorBlink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* ---- Subtitle ---- */
 .subtitle {
   font-family: var(--font-body);
-  font-size: 18px;
+  font-size: clamp(16px, 2vw, 20px);
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.7;
-  margin-bottom: 36px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.75;
+  margin-bottom: 40px;
+  max-width: 600px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+.subtitleVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- CTA Group ---- */
 .ctaGroup {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
 }
 
-/* Bottom fade */
+.ctaBtn {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.ctaBtnVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Stat Highlights ---- */
+.statsRow {
+  display: flex;
+  gap: 40px;
+  margin-top: 56px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+}
+
+.statsRowVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stat {
+  text-align: left;
+}
+
+.statNumber {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+
+/* ---- Scroll Indicator ---- */
+.scrollIndicator {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: scrollFadeIn 1s ease-out 3s both;
+}
+
+.scrollLabel {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.scrollChevron {
+  width: 20px;
+  height: 20px;
+  animation: chevronBounce 2s ease-in-out infinite;
+}
+
+.scrollChevron svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes scrollFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes chevronBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+/* ---- Bottom Fade to White ---- */
 .bottomFade {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 80px;
-  background: linear-gradient(to top, var(--bg-white) 0%, transparent 100%);
-  z-index: 1;
+  height: 120px;
+  background: linear-gradient(to top, var(--bg-white, #fff) 0%, transparent 100%);
+  z-index: 5;
   pointer-events: none;
 }
 
+/* ---- Ambient light sweep ---- */
+.lightSweep {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.02) 45%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.02) 55%,
+    transparent 60%
+  );
+  animation: sweep 12s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 4;
+}
+
+@keyframes sweep {
+  0%, 100% {
+    left: -100%;
+  }
+  50% {
+    left: 200%;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Tablet
+   ============================================================ */
 @media (max-width: 768px) {
   .hero {
-    min-height: 520px;
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .content {
-    padding-top: 48px;
-    padding-bottom: 64px;
+    padding-top: 100px;
+    padding-bottom: 80px;
+  }
+
+  .textBlock {
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: clamp(30px, 7vw, 44px);
+    margin-bottom: 20px;
   }
 
   .subtitle {
     font-size: 16px;
+    margin-bottom: 32px;
   }
 
-  .glowAccent {
-    width: 300px;
-    height: 300px;
+  .statsRow {
+    gap: 28px;
+    margin-top: 40px;
+  }
+
+  .statNumber {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+
+  .scrollIndicator {
+    bottom: 24px;
+  }
+
+  .bottomFade {
+    height: 80px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile
+   ============================================================ */
+@media (max-width: 480px) {
+  .content {
+    padding-top: 88px;
+    padding-bottom: 72px;
+  }
+
+  .badge {
+    font-size: 12px;
+    padding: 6px 14px;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .badgeDot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .title {
+    font-size: clamp(26px, 8vw, 36px);
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .ctaGroup {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .statsRow {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .scrollIndicator {
+    display: none;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .blueprintGrid,
+  .meshGlow,
+  .engElement,
+  .particle,
+  .lightSweep {
+    animation: none !important;
+  }
+
+  .blueprintGrid {
+    opacity: 0.8;
+  }
+
+  .engElement {
+    display: none;
+  }
+
+  .particle {
+    display: none;
+  }
+
+  .cursor {
+    animation: none !important;
+    opacity: 1;
+  }
+
+  .subtitle,
+  .ctaBtn {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

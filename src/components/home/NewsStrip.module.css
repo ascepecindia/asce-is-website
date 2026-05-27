@@ -1,13 +1,16 @@
+/* ── NewsStrip  ·  Magazine Layout + Newsletter CTA ──── */
+
+/* ── Section wrapper ─────────────────────────────────── */
+
 .section {
-  padding-top: 80px;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding-top: 96px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   position: relative;
-  transition: background 0.4s ease;
 }
 
-/* Subtle diagonal decoration */
+/* Subtle diagonal lines */
 .section::before {
   content: '';
   position: absolute;
@@ -15,47 +18,173 @@
   background-image: repeating-linear-gradient(
     45deg,
     transparent,
-    transparent 120px,
-    rgba(0, 61, 165, 0.015) 120px,
-    rgba(0, 61, 165, 0.015) 121px
+    transparent 140px,
+    rgba(0, 61, 165, 0.012) 140px,
+    rgba(0, 61, 165, 0.012) 141px
   );
   pointer-events: none;
 }
 
-.heading {
-  margin-bottom: 40px;
+/* ── Section header ──────────────────────────────────── */
+
+.header {
+  margin-bottom: 48px;
   position: relative;
+  z-index: 1;
 }
+
+.monoLabel {
+  display: inline-block;
+  font-family: var(--font-mono, monospace);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  padding: 4px 10px;
+  background: rgba(0, 61, 165, 0.06);
+  border: 1px solid rgba(0, 61, 165, 0.1);
+  border-radius: 4px;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 3.2vw, 38px);
+  font-weight: 800;
+  color: var(--text);
+  margin-top: 10px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* ── News grid ───────────────────────────────────────── */
 
 .newsGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-bottom: 0;
+  gap: 28px;
   position: relative;
+  z-index: 1;
 }
+
+/* ── News card ───────────────────────────────────────── */
 
 .newsCard {
   background: #ffffff;
-  padding: 24px;
-  border-radius: 8px;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 28px 26px 24px;
+  border-radius: 14px;
+  border: 1px solid rgba(226, 235, 246, 0.8);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04),
+    0 1px 2px rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top accent stripe */
+.newsCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    rgba(0, 85, 212, 0.5) 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .newsCard:hover {
-  border-color: var(--primary);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 61, 165, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 61, 165, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 61, 165, 0.15);
 }
 
-.date {
-  font-size: 13px;
-  color: var(--primary);
-  font-weight: 500;
-  margin-bottom: 10px;
+.newsCard:hover::before {
+  transform: scaleX(1);
 }
+
+/* ── Card meta row ───────────────────────────────────── */
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+/* ── Category pills ──────────────────────────────────── */
+
+.pill {
+  display: inline-block;
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 5px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Recognition — warm amber */
+.catRecognition {
+  background: rgba(234, 170, 0, 0.1);
+  color: #b07d00;
+  border: 1px solid rgba(234, 170, 0, 0.2);
+}
+
+.newsCard:hover .catRecognition {
+  background: rgba(234, 170, 0, 0.18);
+  border-color: rgba(234, 170, 0, 0.35);
+}
+
+/* Academic — indigo/purple */
+.catAcademic {
+  background: rgba(88, 28, 186, 0.08);
+  color: #5b21b6;
+  border: 1px solid rgba(88, 28, 186, 0.15);
+}
+
+.newsCard:hover .catAcademic {
+  background: rgba(88, 28, 186, 0.15);
+  border-color: rgba(88, 28, 186, 0.3);
+}
+
+/* Technical — primary blue */
+.catTechnical {
+  background: rgba(0, 61, 165, 0.08);
+  color: var(--primary);
+  border: 1px solid rgba(0, 61, 165, 0.15);
+}
+
+.newsCard:hover .catTechnical {
+  background: rgba(0, 61, 165, 0.14);
+  border-color: rgba(0, 61, 165, 0.3);
+}
+
+/* ── Date ────────────────────────────────────────────── */
+
+.date {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  color: var(--text-muted);
+  opacity: 0.7;
+  letter-spacing: 0.02em;
+}
+
+/* ── Headline ────────────────────────────────────────── */
 
 .headline {
   font-family: var(--font-heading);
@@ -63,61 +192,95 @@
   font-weight: 700;
   color: var(--text);
   margin-bottom: 10px;
-  line-height: 1.4;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
 }
 
+/* ── Excerpt ─────────────────────────────────────────── */
+
 .excerpt {
+  font-family: var(--font-body);
   font-size: 14px;
   color: var(--text-muted);
-  margin-bottom: 14px;
-  line-height: 1.6;
+  margin-bottom: 18px;
+  line-height: 1.65;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  flex: 1;
 }
 
+/* ── Read more ───────────────────────────────────────── */
+
 .readLink {
-  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 13.5px;
   font-weight: 600;
   color: var(--primary);
-  transition: color 0.2s ease;
+  text-decoration: none;
+  transition: color 0.25s ease, gap 0.25s ease;
+  gap: 0;
 }
 
 .readLink:hover {
   color: var(--primary-hover);
 }
 
-/* Newsletter Band */
+.readLink:hover svg {
+  transform: translateX(3px);
+}
+
+/* ═══════════════════════════════════════════════════════
+   NEWSLETTER CTA BAND
+   ═══════════════════════════════════════════════════════ */
+
 .newsletterBand {
-  background: var(--gradient-newsletter);
-  margin-top: 80px;
-  padding: 72px 0;
+  background: linear-gradient(
+    135deg,
+    #002b7a 0%,
+    #003da5 40%,
+    #0055d4 100%
+  );
+  margin-top: 96px;
+  padding: 80px 0;
   position: relative;
   overflow: hidden;
 }
 
-/* Mesh overlay for newsletter */
-.newsletterBand::before {
-  content: '';
+/* Floating mesh / grid pattern */
+.meshOverlay {
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.04) 0%, transparent 40%);
+    /* Radial highlight spots */
+    radial-gradient(
+      ellipse at 20% 40%,
+      rgba(255, 255, 255, 0.07) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 80% 60%,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 45%
+    ),
+    /* Grid lines */
+    linear-gradient(
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    );
+  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
   pointer-events: none;
 }
 
-.newsletterBand::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-}
+/* ── Newsletter content ──────────────────────────────── */
 
 .newsletterContent {
   max-width: 560px;
@@ -127,46 +290,108 @@
   z-index: 1;
 }
 
-.newsletterContent h2 {
+.newsletterHeading {
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 800;
+  color: #ffffff;
   margin-bottom: 12px;
-  color: #fff;
+  letter-spacing: -0.02em;
 }
 
 .newsletterDesc {
+  font-family: var(--font-body);
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.75);
-  margin-bottom: 28px;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 32px;
+  line-height: 1.65;
 }
+
+/* ── Email form ──────────────────────────────────────── */
 
 .emailForm {
   display: flex;
   gap: 12px;
+  max-width: 480px;
+  margin: 0 auto 16px;
 }
 
 .emailInput {
   flex: 1;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 8px;
-  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 10px;
+  padding: 14px 18px;
   font-family: var(--font-body);
   font-size: 14px;
-  color: #fff;
+  color: #ffffff;
   outline: none;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  transition: border-color 0.25s ease, background 0.25s ease,
+    box-shadow 0.25s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .emailInput:focus {
   border-color: rgba(255, 255, 255, 0.5);
-  background-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
 }
 
 .emailInput::placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.45);
 }
+
+/* Subscribe button */
+.subscribeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 26px;
+  background: #ffffff;
+  color: var(--primary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.25s ease, transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.subscribeBtn:hover {
+  background: #f0f5ff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.subscribeBtn:active {
+  transform: translateY(0);
+}
+
+.btnArrow {
+  transition: transform 0.25s ease;
+}
+
+.subscribeBtn:hover .btnArrow {
+  transform: translateX(2px);
+}
+
+/* ── Trust line ──────────────────────────────────────── */
+
+.trustLine {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.02em;
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════ */
 
 @media (max-width: 1024px) {
   .newsGrid {
@@ -175,11 +400,44 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding-top: 72px;
+  }
+
   .newsGrid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
-  
+
+  .newsletterBand {
+    margin-top: 72px;
+    padding: 64px 0;
+  }
+
   .emailForm {
     flex-direction: column;
+  }
+
+  .subscribeBtn {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding-top: 56px;
+  }
+
+  .header {
+    margin-bottom: 32px;
+  }
+
+  .newsCard {
+    padding: 22px 20px 20px;
+  }
+
+  .newsletterBand {
+    margin-top: 56px;
+    padding: 52px 0;
   }
 }

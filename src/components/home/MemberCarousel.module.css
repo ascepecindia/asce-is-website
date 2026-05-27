@@ -1,36 +1,71 @@
 .section {
-  padding: 80px 0;
-  background: linear-gradient(180deg, rgba(237, 242, 252, 0.75) 0%, rgba(245, 248, 255, 0.72) 50%, rgba(237, 242, 252, 0.75) 100%);
+  padding: 120px 0 100px;
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   overflow: hidden;
   position: relative;
-  transition: background 0.4s ease;
 }
 
-/* Blueprint line pattern */
 .section::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0, 61, 165, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 61, 165, 0.02) 1px, transparent 1px);
-  background-size: 48px 48px;
+    linear-gradient(rgba(0, 61, 165, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 61, 165, 0.015) 1px, transparent 1px);
+  background-size: 56px 56px;
   pointer-events: none;
 }
 
-.section h2 {
-  margin-bottom: 40px;
+.header {
+  text-align: center;
+  margin-bottom: 56px;
   position: relative;
   z-index: 1;
 }
 
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.2em;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sectionLabel::before,
+.sectionLabel::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--primary);
+  opacity: 0.3;
+}
+
+.heading {
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+}
+
+.accent {
+  color: var(--primary);
+}
+
+/* Carousel */
 .carouselContainer {
   width: 100%;
   overflow-x: hidden;
   position: relative;
   z-index: 1;
+  /* Fade edges */
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
 }
 
 .track {
@@ -41,69 +76,83 @@
   display: flex;
   gap: 24px;
   width: max-content;
-  animation: scroll 35s linear infinite;
-  padding-left: 24px;
+  animation: marquee 40s linear infinite;
+  padding: 8px 0;
 }
 
 .track:hover .scrollContent {
   animation-play-state: paused;
 }
 
-@keyframes scroll {
+@keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(calc(-50% - 12px)); }
 }
 
+/* Card */
 .card {
-  width: 300px;
-  background-color: var(--bg-white);
+  width: 380px;
+  background: var(--bg-white);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 28px;
+  border-radius: 20px;
+  padding: 36px 32px 28px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
 }
 
 .card:hover {
-  border-color: var(--primary);
-  box-shadow: var(--shadow-card);
-  transform: translateY(-2px);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(0, 61, 165, 0.1);
+  border-color: rgba(0, 61, 165, 0.12);
+}
+
+/* Quote mark */
+.quoteMark {
+  font-family: Georgia, serif;
+  font-size: 64px;
+  line-height: 0.8;
+  color: rgba(0, 61, 165, 0.08);
+  margin-bottom: 4px;
+  user-select: none;
+}
+
+.quote {
+  font-size: 15px;
+  font-style: italic;
+  color: var(--text);
+  line-height: 1.75;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+/* Footer */
+.cardFooter {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
 }
 
 .avatar {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  border: 2px solid var(--primary);
-  background: linear-gradient(135deg, var(--bg-tint) 0%, #E2EBF6 100%);
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
   flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 }
 
 .avatar span {
   font-family: var(--font-heading);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  color: var(--primary);
-}
-
-.quote {
-  font-size: 14px;
-  font-style: italic;
-  color: var(--text);
-  line-height: 1.6;
-  margin-bottom: 20px;
-  flex: 1;
-}
-
-.info {
-  border-top: 1px solid var(--border);
-  padding-top: 16px;
+  color: #fff;
 }
 
 .name {
@@ -116,11 +165,23 @@
 
 .role {
   font-size: 13px;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.branch {
+  font-size: 12px;
   color: var(--text-muted);
+  margin-top: 1px;
 }
 
 @media (max-width: 768px) {
+  .card {
+    width: 320px;
+    padding: 28px 24px 24px;
+  }
+
   .scrollContent {
-    animation-duration: 22s;
+    animation-duration: 25s;
   }
 }
